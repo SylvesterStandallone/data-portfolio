@@ -20,8 +20,8 @@ export default function HomePage() {
     },
     {
       icon: Brain,
-      title: "Machine Learning",
-      description: "Desarrollo de modelos predictivos y algoritmos de clasificación",
+      title: "ETL y Automatizaciones",
+      description: "Construcción de procesos ETL y automatización de transferencias de datos",
     },
   ]
 
@@ -37,7 +37,7 @@ export default function HomePage() {
                   Transformo <span className="text-accent font-manrope">datos</span> en decisiones
                 </h1>
 
-                <p className="text-xl text-muted leading-relaxed text-pretty max-w-lg">
+                <p className="text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg">
                   Especialista en análisis de datos y ciencia de datos. Ayudo a organizaciones a descubrir patrones
                   ocultos y generar insights accionables.
                 </p>
@@ -76,7 +76,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">Habilidades Técnicas</h2>
-            <p className="text-muted text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Dominio de herramientas y tecnologías para el análisis completo del ciclo de vida de los datos
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
                   <item.icon className="w-8 h-8 text-accent" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3 font-manrope">{item.title}</h3>
-                <p className="text-muted leading-relaxed">{item.description}</p>
+                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
               </Card>
             ))}
           </div>

@@ -2,23 +2,28 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Github, ExternalLink, BarChart3 } from "lucide-react"
+import { ImageSlider } from "./ImageSlider"
 
 interface ProjectCardProps {
   title: string
   description: string
   technologies: string[]
   githubUrl: string
-  demoUrl: string
+  demoId: string // Changed from demoUrl to demoId for internal routing
+  images?: string[]
 }
 
-export function ProjectCard({ title, description, technologies, githubUrl, demoUrl }: ProjectCardProps) {
+export function ProjectCard({ title, description, technologies, githubUrl, demoId, images = [] }: ProjectCardProps) {
   return (
-    /* Updated with modern glass-morphism design and hover effects */
     <Card className="group h-full flex flex-col bg-card/50 backdrop-blur-sm border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
       <CardHeader className="pb-4">
-        <div className="w-full h-48 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-xl mb-4 flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
-          <BarChart3 className="w-16 h-16 text-accent/60 group-hover:text-accent transition-colors" />
-        </div>
+        {images.length > 0 ? (
+          <ImageSlider images={images} alt={title} />
+        ) : (
+          <div className="w-full h-48 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-xl mb-4 flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
+            <BarChart3 className="w-16 h-16 text-accent/60 group-hover:text-accent transition-colors" />
+          </div>
+        )}
 
         <CardTitle className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
           {title}
@@ -33,7 +38,7 @@ export function ProjectCard({ title, description, technologies, githubUrl, demoU
             <Badge
               key={tech}
               variant="outline"
-              className="text-xs bg-accent/5 border-accent/20 text-accent hover:bg-accent/10 transition-colors"
+              className="text-xs bg-accent text-accent-foreground border-accent/50 hover:bg-accent/90 transition-colors"
             >
               {tech}
             </Badge>
@@ -59,7 +64,7 @@ export function ProjectCard({ title, description, technologies, githubUrl, demoU
           asChild
           className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-accent/25 transition-all"
         >
-          <a href={demoUrl} target="_blank" rel="noopener noreferrer">
+          <a href={`/demos#${demoId}`}>
             <ExternalLink className="w-4 h-4 mr-2" />
             Demo
           </a>

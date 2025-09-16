@@ -28,7 +28,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={`text-sm font-medium font-manrope transition-all duration-300 hover:text-accent relative group ${
-                pathname === item.href ? "text-accent" : "text-muted hover:text-foreground"
+                pathname === item.href ? "text-accent" : "text-foreground hover:text-accent"
               }`}
             >
               {item.label}
