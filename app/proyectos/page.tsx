@@ -9,7 +9,7 @@ export default function ProyectosPage() {
       technologies: ["Python (Selenium, Pandas)", "Power BI", "DAX", "Make"],
       githubUrl: "https://github.com/sylvesterstandallone/proyecto-1"
       demoId: "focos-incendio",
-      images: ["/","/","/"],
+      images: ["/Screenshot_1.png","/","/"],
     },
     {
       title: "Sistema de Inteligencia de Mercado para un Distribuidor Mayorista",
