@@ -19,6 +19,7 @@ export default function HomePage() {
       description: "Creación de dashboards interactivos y reportes ejecutivos",
     },
     {
+      icon: DatabaseImport,
       icon: Brain,
       title: "ETL y Automatizaciones",
       description: "Construcción de procesos ETL y automatización de transferencias de datos",
