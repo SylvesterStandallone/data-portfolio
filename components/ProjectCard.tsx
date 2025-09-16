@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Github, ExternalLink, BarChart3 } from "lucide-react"
+import { ImageSlider } from "./ImageSlider"
 
 interface ProjectCardProps {
   title: string
@@ -9,15 +10,20 @@ interface ProjectCardProps {
   technologies: string[]
   githubUrl: string
   demoId: string // Changed from demoUrl to demoId for internal routing
+  images?: string[]
 }
 
-export function ProjectCard({ title, description, technologies, githubUrl, demoId }: ProjectCardProps) {
+export function ProjectCard({ title, description, technologies, githubUrl, demoId, images = [] }: ProjectCardProps) {
   return (
     <Card className="group h-full flex flex-col bg-card/50 backdrop-blur-sm border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
       <CardHeader className="pb-4">
-        <div className="w-full h-48 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-xl mb-4 flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
-          <BarChart3 className="w-16 h-16 text-accent/60 group-hover:text-accent transition-colors" />
-        </div>
+        {images.length > 0 ? (
+          <ImageSlider images={images} alt={title} />
+        ) : (
+          <div className="w-full h-48 bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-xl mb-4 flex items-center justify-center border border-accent/20 group-hover:border-accent/40 transition-colors">
+            <BarChart3 className="w-16 h-16 text-accent/60 group-hover:text-accent transition-colors" />
+          </div>
+        )}
 
         <CardTitle className="text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
           {title}

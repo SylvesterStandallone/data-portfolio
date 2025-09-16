@@ -8,7 +8,8 @@ export default function ProyectosPage() {
         "Dashboard interactivo para análisis de patrones de compra y predicción de demanda utilizando técnicas de machine learning.",
       technologies: ["Python", "Pandas", "Scikit-learn", "Tableau"],
       githubUrl: "https://github.com/tu-usuario/proyecto-1",
-      demoId: "ecommerce-analysis", // Changed from demoUrl to demoId
+      demoId: "ecommerce-analysis",
+      images: ["/ecommerce-dashboard-analytics-charts.jpg", "/sales-data-visualization-graphs.jpg", "/machine-learning-prediction-model-interface.jpg"],
     },
     {
       title: "Segmentación de Clientes",
@@ -16,7 +17,8 @@ export default function ProyectosPage() {
         "Modelo de clustering para identificar segmentos de clientes y optimizar estrategias de marketing personalizado.",
       technologies: ["R", "K-means", "Power BI", "SQL"],
       githubUrl: "https://github.com/tu-usuario/proyecto-2",
-      demoId: "customer-segmentation", // Changed from demoUrl to demoId
+      demoId: "customer-segmentation",
+      images: ["/customer-segmentation-clusters.png", "/marketing-analytics-dashboard-power-bi.jpg", "/customer-data-analysis-charts.jpg"],
     },
     {
       title: "Predicción de Precios Inmobiliarios",
@@ -24,7 +26,8 @@ export default function ProyectosPage() {
         "Sistema de predicción de precios de viviendas usando regresión múltiple y redes neuronales con datos históricos.",
       technologies: ["Python", "TensorFlow", "Matplotlib", "Pandas"],
       githubUrl: "https://github.com/tu-usuario/proyecto-3",
-      demoId: "real-estate-prediction", // Changed from demoUrl to demoId
+      demoId: "real-estate-prediction",
+      images: ["/real-estate-price-prediction-neural-network.jpg", "/housing-market-data-analysis-matplotlib.jpg", "/property-valuation-machine-learning-model.jpg"],
     },
   ]
 
@@ -52,7 +55,8 @@ export default function ProyectosPage() {
                 description={project.description}
                 technologies={project.technologies}
                 githubUrl={project.githubUrl}
-                demoId={project.demoId} // Updated prop name
+                demoId={project.demoId}
+                images={project.images}
               />
             </div>
           ))}
