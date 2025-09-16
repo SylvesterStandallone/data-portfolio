@@ -5,7 +5,7 @@ import { ArrowRight, BarChart3, Brain, Database } from "lucide-react"
 import Link from "next/link"
 
 export default function HomePage() {
-  const skills = ["Python", "R", "SQL", "Tableau", "Power BI", "Scikit-learn", "Pandas", "TensorFlow", "Apache Spark"]
+  const skills = ["Python", "Pandas", "Selenium", "SQL", "Power BI", "AI"]
 
   const highlights = [
     {
@@ -38,8 +38,11 @@ export default function HomePage() {
                 </h1>
 
                 <p className="text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg">
-                  Especialista en análisis de datos y ciencia de datos. Ayudo a organizaciones a descubrir patrones
-                  ocultos y generar insights accionables.
+                  Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas.
+
+Mi experiencia se centra en la optimización de procesos ETL y la creación de dashboards de BI. Por ejemplo, al analizar los datos públicos sobre incendios forestales en Argentina, identifiqué un desafío clave: la dificultad para realizar análisis estratégicos a partir de datasets dispares. Para solucionarlo, diseñé y construí una solución de BI de extremo a extremo que automatiza la ingesta y procesamiento de estos datos. El resultado es un dash interactivo que se creó específicamente para análisis post-evento, capaz de identificar patrones, correlacionar factores de riesgo y visualizar las zonas de mayor incidencia históricas, que de esta manera permite una planificación de recursos más inteligente y proactiva
+
+Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable, me encantaría conversar.
                 </p>
               </div>
 
