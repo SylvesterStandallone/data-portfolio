@@ -2,24 +2,20 @@ import { ProjectCard } from "@/components/ProjectCard"
 
 export default function ProyectosPage() {
   const projects = [
-    {
-      title: "Análisis de Ventas E-commerce",
+       {
+      title: "Solución de Business Intelligence End-to-End para el Análisis de Incendios Forestales en Argentina",
       description:
-        "Dashboard interactivo para análisis de patrones de compra y predicción de demanda utilizando técnicas de machine learning.",
-      technologies: ["Python", "Pandas", "Scikit-learn", "Tableau"],
-      githubUrl: "https://github.com/tu-usuario/proyecto-1",
-      demoId: "ecommerce-analysis",
-      images: ["/ecommerce-dashboard-analytics-charts.jpg", "/sales-data-visualization-graphs.jpg", "/machine-learning-prediction-model-interface.jpg"],
+        " Un dashboard interactivo en Power BI que centraliza y analiza más de 325,000 focos de incendio ocurridos en Argentina durante el Q1 de 2022. La solución completa abarca desde la ingesta automatizada de datos públicos hasta la visualización de KPIs para la toma de decisiones estratégicas",
+      technologies: ["Python (Selenium, Pandas)", "Power BI", "DAX", "Make"],
+      githubUrl: "https://github.com/sylvesterstandallone/proyecto-1"
     },
     {
-      title: "Segmentación de Clientes",
+      title: "Sistema de Inteligencia de Mercado para un Distribuidor Mayorista",
       description:
-        "Modelo de clustering para identificar segmentos de clientes y optimizar estrategias de marketing personalizado.",
+        "Una solución de datos end-to-end que extrae, procesa y visualiza data de más de 13,000 productos de sitios web de competidores. El sistema transforma datos públicos pero protegidos en un dashboard interactivo en Google Sheets, proporcionando al cliente una ventaja competitiva a través del análisis de precios, stock y promociones en tiempo real.",
       technologies: ["R", "K-means", "Power BI", "SQL"],
-      githubUrl: "https://github.com/tu-usuario/proyecto-2",
-      demoId: "customer-segmentation",
-      images: ["/customer-segmentation-clusters.png", "/marketing-analytics-dashboard-power-bi.jpg", "/customer-data-analysis-charts.jpg"],
-    },
+      githubUrl: "https://github.com/tu-usuario/proyecto-2"
+    },/*
     {
       title: "Predicción de Precios Inmobiliarios",
       description:
@@ -28,7 +24,7 @@ export default function ProyectosPage() {
       githubUrl: "https://github.com/tu-usuario/proyecto-3",
       demoId: "real-estate-prediction",
       images: ["/real-estate-price-prediction-neural-network.jpg", "/housing-market-data-analysis-matplotlib.jpg", "/property-valuation-machine-learning-model.jpg"],
-    },
+    },*/
   ]
 
   return (
