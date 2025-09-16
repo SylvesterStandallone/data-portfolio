@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ArrowRight, BarChart3, Brain, Database } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function HomePage() {
@@ -40,7 +41,7 @@ export default function HomePage() {
 
 Mi experiencia se centra en la optimización de procesos ETL y la creación de dashboards de BI. Por ejemplo, al analizar los datos públicos sobre incendios forestales en Argentina, identifiqué un desafío clave: la dificultad para realizar análisis estratégicos a partir de datasets dispares. Para solucionarlo, diseñé y construí una solución de BI de extremo a extremo que automatiza la ingesta y procesamiento de estos datos. El resultado es un dash interactivo que se creó específicamente para análisis post-evento, capaz de identificar patrones, correlacionar factores de riesgo y visualizar las zonas de mayor incidencia históricas, que de esta manera permite una planificación de recursos más inteligente y proactiva
 
-Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable, me encantaría conversar.`
+Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable en base a sus procesos, me encantaría conversar.`
 
   // AÑADIDO: Creamos una versión truncada del texto (el primer párrafo)
   const truncatedDescription =
@@ -96,7 +97,14 @@ Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics 
               <div className="relative">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl flex items-center justify-center animate-float">
                   <div className="w-64 h-64 lg:w-80 lg:h-80 bg-card rounded-2xl shadow-2xl flex items-center justify-center border border-border">
-                    <BarChart3 className="w-24 h-24 text-accent" />
+                     <Image
+                      src="/Foto22.png" // Apunta a la imagen en la carpeta /public
+                      alt="Foto de perfil de Iván Gabriel, Analytics Developer"
+                      width={320} // El tamaño más grande del contenedor (lg:w-80 = 320px)
+                      height={320} // El tamaño más grande del contenedor (lg:h-80 = 320px)
+                      className="object-cover w-full h-full" // Asegura que la imagen cubra el contenedor
+                      priority // Le dice a Next.js que cargue esta imagen importante primero
+                    />
                   </div>
                 </div>
                 {/* Floating elements */}
