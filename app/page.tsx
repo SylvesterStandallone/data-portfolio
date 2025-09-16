@@ -20,8 +20,8 @@ export default function HomePage() {
     },
     {
       icon: Brain,
-      title: "Machine Learning",
-      description: "Desarrollo de modelos predictivos y algoritmos de clasificación",
+      title: "ETL y Automatizaciones",
+      description: "Construcción de procesos ETL y automatización de transferencias de datos",
     },
   ]
 
