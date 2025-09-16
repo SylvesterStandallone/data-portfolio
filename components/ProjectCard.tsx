@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, technologies, githubUrl, demoI
             <Badge
               key={tech}
               variant="outline"
-              className="text-xs bg-accent/5 border-accent/20 text-accent hover:bg-accent/10 transition-colors"
+              className="text-xs bg-accent text-accent-foreground border-accent/50 hover:bg-accent/90 transition-colors"
             >
               {tech}
             </Badge>
