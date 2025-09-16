@@ -8,13 +8,16 @@ export default function ProyectosPage() {
         " Un dashboard interactivo en Power BI que centraliza y analiza más de 325,000 focos de incendio ocurridos en Argentina durante el Q1 de 2022. La solución completa abarca desde la ingesta automatizada de datos públicos hasta la visualización de KPIs para la toma de decisiones estratégicas",
       technologies: ["Python (Selenium, Pandas)", "Power BI", "DAX", "Make"],
       githubUrl: "https://github.com/sylvesterstandallone/proyecto-1"
+      demoId: "focos-incendio",
+      images: ["/","/","/"],
     },
     {
       title: "Sistema de Inteligencia de Mercado para un Distribuidor Mayorista",
       description:
         "Una solución de datos end-to-end que extrae, procesa y visualiza data de más de 13,000 productos de sitios web de competidores. El sistema transforma datos públicos pero protegidos en un dashboard interactivo en Google Sheets, proporcionando al cliente una ventaja competitiva a través del análisis de precios, stock y promociones en tiempo real.",
       technologies: ["Python", "Google Sheets", "Google Drive", "Make"],
-      demoId: "sheets-dashboard"
+      demoId: "sheets-dashboard",
+      images: ["/","/","/"],
       githubUrl: "https://github.com/tu-usuario/proyecto-2"
     },/*
     {
