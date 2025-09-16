@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowRight, BarChart3, Brain, DatabaseImport } from "lucide-react"
+import { ArrowRight, BarChart3, Brain, Database } from "lucide-react"
 import Link from "next/link"
 
 export default function HomePage() {
@@ -19,7 +19,7 @@ export default function HomePage() {
       description: "Creación de dashboards interactivos y reportes ejecutivos",
     },
     {
-      icon: DatabaseImport,
+      icon: Brain,
       title: "ETL y Automatizaciones",
       description: "Construcción de procesos ETL y automatización de transferencias de datos",
     },
