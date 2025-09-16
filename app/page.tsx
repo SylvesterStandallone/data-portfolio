@@ -1,3 +1,8 @@
+// AÑADIDO: Convertimos este en un Componente de Cliente para poder usar estado (useState)
+"use client"
+
+// AÑADIDO: Importamos el hook 'useState' de React
+import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -5,13 +10,17 @@ import { ArrowRight, BarChart3, Brain, Database } from "lucide-react"
 import Link from "next/link"
 
 export default function HomePage() {
+  // AÑADIDO: Creamos un estado para controlar si el texto está expandido o no
+  const [isExpanded, setIsExpanded] = useState(false)
+
   const skills = ["Python", "Pandas", "Selenium", "SQL", "Power BI", "AI"]
 
   const highlights = [
     {
       icon: Database,
       title: "Análisis de Datos",
-      description: "Extracción y transformación de insights desde datasets complejos",
+      description:
+        "Extracción y transformación de insights desde datasets complejos",
     },
     {
       icon: BarChart3,
@@ -21,9 +30,21 @@ export default function HomePage() {
     {
       icon: Brain,
       title: "ETL y Automatizaciones",
-      description: "Construcción de procesos ETL y automatización de transferencias de datos",
+      description:
+        "Construcción de procesos ETL y automatización de transferencias de datos",
     },
   ]
+
+  // AÑADIDO: Movemos el texto a una constante para manejarlo más fácilmente
+  const fullDescription = `Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas.
+
+Mi experiencia se centra en la optimización de procesos ETL y la creación de dashboards de BI. Por ejemplo, al analizar los datos públicos sobre incendios forestales en Argentina, identifiqué un desafío clave: la dificultad para realizar análisis estratégicos a partir de datasets dispares. Para solucionarlo, diseñé y construí una solución de BI de extremo a extremo que automatiza la ingesta y procesamiento de estos datos. El resultado es un dash interactivo que se creó específicamente para análisis post-evento, capaz de identificar patrones, correlacionar factores de riesgo y visualizar las zonas de mayor incidencia históricas, que de esta manera permite una planificación de recursos más inteligente y proactiva
+
+Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable, me encantaría conversar.`
+
+  // AÑADIDO: Creamos una versión truncada del texto (el primer párrafo)
+  const truncatedDescription =
+    "Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas."
 
   return (
     <div className="min-h-screen">
@@ -34,20 +55,32 @@ export default function HomePage() {
             <div className="space-y-8 animate-fade-in">
               <div className="space-y-6">
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight text-balance">
-                  Transformo <span className="text-accent font-manrope">datos</span> en decisiones
+                  Transformo{" "}
+                  <span className="text-accent font-manrope">datos</span> en
+                  decisiones
                 </h1>
 
-                <p className="text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg">
-                  Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas.
-
-Mi experiencia se centra en la optimización de procesos ETL y la creación de dashboards de BI. Por ejemplo, al analizar los datos públicos sobre incendios forestales en Argentina, identifiqué un desafío clave: la dificultad para realizar análisis estratégicos a partir de datasets dispares. Para solucionarlo, diseñé y construí una solución de BI de extremo a extremo que automatiza la ingesta y procesamiento de estos datos. El resultado es un dash interactivo que se creó específicamente para análisis post-evento, capaz de identificar patrones, correlacionar factores de riesgo y visualizar las zonas de mayor incidencia históricas, que de esta manera permite una planificación de recursos más inteligente y proactiva
-
-Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable, me encantaría conversar.
-                </p>
+                {/* MODIFICADO: Reemplazamos el texto estático por este bloque interactivo */}
+                <div className="text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg">
+                  <p style={{ whiteSpace: "pre-wrap" }}>
+                    {isExpanded ? fullDescription : truncatedDescription}
+                    {!isExpanded && "..."}
+                  </p>
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="text-accent font-semibold hover:underline mt-2"
+                  >
+                    {isExpanded ? "Ver menos" : "Ver más"}
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground"
+                >
                   <Link href="/proyectos">
                     Ver Proyectos <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -78,9 +111,12 @@ Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics 
       <section className="py-20 bg-card/50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">Habilidades Técnicas</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">
+              Habilidades Técnicas
+            </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Dominio de herramientas y tecnologías para el análisis completo del ciclo de vida de los datos
+              Dominio de herramientas y tecnologías para el análisis completo
+              del ciclo de vida de los datos
             </p>
           </div>
 
@@ -107,8 +143,12 @@ Estoy buscando oportunidades para aplicar mis habilidades en roles de Analytics 
                 <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <item.icon className="w-8 h-8 text-accent" />
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3 font-manrope">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                <h3 className="text-xl font-semibold text-foreground mb-3 font-manrope">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
               </Card>
             ))}
           </div>
