@@ -13,7 +13,8 @@ export default function ProyectosPage() {
       title: "Sistema de Inteligencia de Mercado para un Distribuidor Mayorista",
       description:
         "Una solución de datos end-to-end que extrae, procesa y visualiza data de más de 13,000 productos de sitios web de competidores. El sistema transforma datos públicos pero protegidos en un dashboard interactivo en Google Sheets, proporcionando al cliente una ventaja competitiva a través del análisis de precios, stock y promociones en tiempo real.",
-      technologies: ["R", "K-means", "Power BI", "SQL"],
+      technologies: ["Python", "Google Sheets", "Google Drive", "Make"],
+      demoId: "sheets-dashboard"
       githubUrl: "https://github.com/tu-usuario/proyecto-2"
     },/*
     {
