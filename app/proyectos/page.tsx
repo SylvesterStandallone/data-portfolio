@@ -8,7 +8,7 @@ export default function ProyectosPage() {
         "Dashboard interactivo para análisis de patrones de compra y predicción de demanda utilizando técnicas de machine learning.",
       technologies: ["Python", "Pandas", "Scikit-learn", "Tableau"],
       githubUrl: "https://github.com/tu-usuario/proyecto-1",
-      demoUrl: "https://demo-proyecto-1.vercel.app",
+      demoId: "ecommerce-analysis", // Changed from demoUrl to demoId
     },
     {
       title: "Segmentación de Clientes",
@@ -16,7 +16,7 @@ export default function ProyectosPage() {
         "Modelo de clustering para identificar segmentos de clientes y optimizar estrategias de marketing personalizado.",
       technologies: ["R", "K-means", "Power BI", "SQL"],
       githubUrl: "https://github.com/tu-usuario/proyecto-2",
-      demoUrl: "https://demo-proyecto-2.vercel.app",
+      demoId: "customer-segmentation", // Changed from demoUrl to demoId
     },
     {
       title: "Predicción de Precios Inmobiliarios",
@@ -24,12 +24,11 @@ export default function ProyectosPage() {
         "Sistema de predicción de precios de viviendas usando regresión múltiple y redes neuronales con datos históricos.",
       technologies: ["Python", "TensorFlow", "Matplotlib", "Pandas"],
       githubUrl: "https://github.com/tu-usuario/proyecto-3",
-      demoUrl: "https://demo-proyecto-3.vercel.app",
+      demoId: "real-estate-prediction", // Changed from demoUrl to demoId
     },
   ]
 
   return (
-    /* Updated with modern fluid layout and animations */
     <div className="min-h-screen bg-gradient-to-br from-background via-card/30 to-background py-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
@@ -53,7 +52,7 @@ export default function ProyectosPage() {
                 description={project.description}
                 technologies={project.technologies}
                 githubUrl={project.githubUrl}
-                demoUrl={project.demoUrl}
+                demoId={project.demoId} // Updated prop name
               />
             </div>
           ))}
