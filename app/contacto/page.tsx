@@ -85,7 +85,7 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Teléfono</p>
-                      <p className="text-foreground">+54(385)506-1551</p>
+                      <p className="text-foreground">+543855061551</p>
                     </div>
                   </div>
                 </div>
