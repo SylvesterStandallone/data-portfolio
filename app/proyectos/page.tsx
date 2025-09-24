@@ -7,7 +7,7 @@ export default function ProyectosPage() {
       description:
         " Un dashboard interactivo en Power BI que centraliza y analiza más de 325,000 focos de incendio ocurridos en Argentina durante el Q1 de 2022. La solución completa abarca desde la ingesta automatizada de datos públicos hasta la visualización de KPIs para la toma de decisiones estratégicas",
       technologies: ["Python (Selenium, Pandas)", "Power BI", "DAX"],
-      githubUrl: "https://github.com/sylvesterstandallone/proyecto-1",
+      githubUrl: "#",
       demoId: "focos-incendio",
       images: [
         "/Screenshot_1.png",
@@ -26,7 +26,7 @@ export default function ProyectosPage() {
       technologies: ["Python", "Google Sheets", "Google Drive API", "Make"],
       demoId: "sheets-dashboard",
       images: ["/customer-data-analysis-charts.jpg", "/sales-data-visualization-graphs.jpg", "/ecommerce-dashboard-analytics-charts.jpg"],
-      githubUrl: "https://github.com/tu-usuario/proyecto-2",
+      githubUrl: "#",
     },
     /*
     {
