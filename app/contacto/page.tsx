@@ -61,10 +61,10 @@ export default function ContactoPage() {
                     <div>
                       <p className="text-sm text-muted-foreground">Email</p>
                       <a
-                        href="mailto:tu-email@ejemplo.com"
+                        href="mailto:ivan.e90@gmail.com"
                         className="text-foreground hover:text-accent transition-colors"
                       >
-                        tu-email@ejemplo.com
+                        ivan.e90@gmail.com
                       </a>
                     </div>
                   </div>
@@ -75,7 +75,7 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Ubicación</p>
-                      <p className="text-foreground">Ciudad, País</p>
+                      <p className="text-foreground">Santiago del Estero, Argentina</p>
                     </div>
                   </div>
 
@@ -85,7 +85,7 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Teléfono</p>
-                      <p className="text-foreground">+1 (555) 123-4567</p>
+                      <p className="text-foreground">+54(385)506-1551</p>
                     </div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function ContactoPage() {
                   <p className="text-sm text-muted-foreground mb-4">Sígueme en redes sociales</p>
                   <div className="flex space-x-4">
                     <Link
-                      href="https://linkedin.com/in/tu-perfil"
+                      href="https://www.linkedin.com/in/ivanges/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent hover:bg-accent hover:text-accent-foreground transition-all"
@@ -103,7 +103,7 @@ export default function ContactoPage() {
                     </Link>
 
                     <Link
-                      href="https://github.com/tu-usuario"
+                      href="https://github.com/SylvesterStandallone"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent hover:bg-accent hover:text-accent-foreground transition-all"
