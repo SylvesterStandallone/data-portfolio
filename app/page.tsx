@@ -141,13 +141,9 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
       <section className="py-20 bg-gradient-to-br from-background via-card/30 to-background">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 rounded-2xl mb-6">
-              <div className="w-8 h-8 bg-accent rounded-lg animate-float"></div>
-            </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">Proyectos Destacados</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Una selección de mis trabajos más relevantes en análisis de datos, donde combino técnicas avanzadas con
-              soluciones prácticas.
+              Soluciones completas de datos que transforman información en decisiones estratégicas
             </p>
           </div>
 
