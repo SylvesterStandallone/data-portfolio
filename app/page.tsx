@@ -8,44 +8,36 @@ import { ProjectCard } from "@/components/ProjectCard"
 import { ArrowRight, BarChart3, Brain, Database } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function HomePage() {
   const [isExpanded, setIsExpanded] = useState(false)
+  const { t } = useLanguage()
 
   const skills = ["Python", "Pandas", "Selenium", "SQL", "Power BI", "AI"]
 
   const highlights = [
     {
       icon: Database,
-      title: "Análisis de Datos",
-      description: "Extracción y transformación de insights desde datasets complejos",
+      title: t("home.skills.dataAnalysis"),
+      description: t("home.skills.dataAnalysis.desc"),
     },
     {
       icon: BarChart3,
-      title: "Visualización",
-      description: "Creación de dashboards interactivos y reportes ejecutivos",
+      title: t("home.skills.visualization"),
+      description: t("home.skills.visualization.desc"),
     },
     {
       icon: Brain,
-      title: "ETL y Automatizaciones",
-      description: "Construcción de procesos ETL y automatización de transferencias de datos",
+      title: t("home.skills.etl"),
+      description: t("home.skills.etl.desc"),
     },
   ]
 
-  const fullDescription = `Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas.
-
-Mi experiencia se centra en la optimización de procesos ETL y la creación de dashboards de BI. Por ejemplo, al analizar los datos públicos sobre incendios forestales en Argentina, identifiqué un desafío clave: la dificultad para realizar análisis estratégicos a partir de datasets dispares. Para solucionarlo, diseñé y construí una solución de BI de extremo a extremo que automatiza la ingesta y procesamiento de estos datos. El resultado es un dash interactivo que se creó específicamente para análisis post-evento, capaz de identificar patrones, correlacionar factores de riesgo y visualizar las zonas de mayor incidencia históricas, que de esta manera permite una planificación de recursos más inteligente y proactiva
-
-Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles de Analytics Engineer, BI Developer o Data Engineer. Si tu organización necesita a alguien que no solo analice datos, sino que construya los sistemas para hacerlo de manera escalable en base a sus procesos, me encantaría conversar.`
-
-  const truncatedDescription =
-    "Soy un Analytics Engineer con una pasión dual: construir sistemas de datos robustos y usarlos para descubrir insights que cambian el negocio. Mi especialidad es gestionar el ciclo de vida completo de los datos, desde la extracción y modelado hasta la visualización interactiva que los líderes necesitan para tomar decisiones estratégicas."
-
   const featuredProjects = [
     {
-      title: "Solución de Business Intelligence End-to-End para el Análisis de Incendios Forestales en Argentina",
-      description:
-        " Un dashboard interactivo en Power BI que centraliza y analiza más de 325,000 focos de incendio ocurridos en Argentina durante el Q1 de 2022. La solución completa abarca desde la ingesta automatizada de datos públicos hasta la visualización de KPIs para la toma de decisiones estratégicas",
+      title: t("project.fireAnalysis.title"),
+      description: t("project.fireAnalysis.description"),
       technologies: ["Python (Selenium, Pandas)", "Power BI", "DAX"],
       githubUrl: "#",
       demoId: "focos-incendio",
@@ -60,9 +52,8 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
       ],
     },
     {
-      title: "Sistema de Inteligencia de Mercado para un Distribuidor Mayorista",
-      description:
-        "Una solución de datos end-to-end que extrae, procesa y visualiza data de más de 13,000 productos de sitios web de competidores. El sistema transforma datos públicos pero protegidos en un dashboard interactivo en Google Sheets, proporcionando al cliente una ventaja competitiva a través del análisis de precios, stock y promociones en tiempo real.",
+      title: t("project.marketIntelligence.title"),
+      description: t("project.marketIntelligence.description"),
       technologies: ["Python", "Google Sheets", "Google Drive API", "Make"],
       demoId: "sheets-dashboard",
       images: [
@@ -83,20 +74,21 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
             <div className="space-y-8 animate-fade-in">
               <div className="space-y-6">
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight text-balance">
-                  Transformo <span className="text-accent font-manrope">datos</span> en decisiones
+                  {t("home.hero.title").split(t("home.hero.title.highlight"))[0]}
+                  <span className="text-accent font-manrope">{t("home.hero.title.highlight")}</span>
+                  {t("home.hero.title").split(t("home.hero.title.highlight"))[1]}
                 </h1>
 
-                {/* MODIFICADO: Reemplazamos el texto estático por este bloque interactivo */}
                 <div className="text-xl text-muted-foreground leading-relaxed text-pretty max-w-lg">
                   <p style={{ whiteSpace: "pre-wrap" }}>
-                    {isExpanded ? fullDescription : truncatedDescription}
+                    {isExpanded ? t("home.hero.description.full") : t("home.hero.description.short")}
                     {!isExpanded && "..."}
                   </p>
                   <button
                     onClick={() => setIsExpanded(!isExpanded)}
                     className="text-accent font-semibold hover:underline mt-2"
                   >
-                    {isExpanded ? "Ver menos" : "Ver más"}
+                    {isExpanded ? t("home.hero.readLess") : t("home.hero.readMore")}
                   </button>
                 </div>
               </div>
@@ -104,11 +96,11 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                   <Link href="/proyectos">
-                    Ver Proyectos <ArrowRight className="ml-2 w-4 h-4" />
+                    {t("home.hero.viewProjects")} <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href="/contacto">Contactar</Link>
+                  <Link href="/contacto">{t("home.hero.contact")}</Link>
                 </Button>
               </div>
             </div>
@@ -119,12 +111,12 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
                 <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-accent/20 to-accent/5 rounded-3xl flex items-center justify-center animate-float">
                   <div className="w-64 h-64 lg:w-80 lg:h-80 bg-card rounded-2xl shadow-2xl flex items-center justify-center border border-border">
                     <Image
-                      src="/Foto22.png" // Apunta a la imagen en la carpeta /public
-                      alt="Foto de perfil de Iván Gabriel, Analytics Developer"
-                      width={320} // El tamaño más grande del contenedor (lg:w-80 = 320px)
-                      height={320} // El tamaño más grande del contenedor (lg:h-80 = 320px)
-                      className="object-cover w-full h-full" // Asegura que la imagen cubra el contenedor
-                      priority // Le dice a Next.js que cargue esta imagen importante primero
+                      src="/Foto22.png"
+                      alt={t("home.hero.imageAlt")}
+                      width={320}
+                      height={320}
+                      className="object-cover w-full h-full"
+                      priority
                     />
                   </div>
                 </div>
@@ -141,10 +133,10 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
       <section className="py-20 bg-gradient-to-br from-background via-card/30 to-background">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">Proyectos Destacados</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Soluciones completas de datos que transforman información en decisiones estratégicas
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">
+              {t("home.projects.title")}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("home.projects.subtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -170,7 +162,7 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
               className="border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 bg-transparent"
             >
               <Link href="/proyectos">
-                Ver Todos los Proyectos <ArrowRight className="ml-2 w-4 h-4" />
+                {t("home.projects.viewAll")} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
@@ -180,10 +172,10 @@ Estoy buscando oportunidades para aplicar mis habilidades en proyectos y roles d
       <section className="py-20 bg-card/50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">Habilidades Técnicas</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Dominio de herramientas y tecnologías para el análisis completo del ciclo de vida de los datos
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 font-manrope">
+              {t("home.skills.title")}
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("home.skills.subtitle")}</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 mb-16">

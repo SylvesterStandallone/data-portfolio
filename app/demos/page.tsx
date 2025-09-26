@@ -1,9 +1,15 @@
+"use client"
+
+import { useLanguage } from "@/contexts/LanguageContext"
+
 export default function DemosPage() {
+  const { t } = useLanguage()
+
   const demos = [
     {
       id: "ecommerce-analysis",
-      title: "Análisis de Ventas E-commerce",
-      description: "Dashboard interactivo para análisis de patrones de compra y predicción de demanda",
+      title: t("demo.salesAnalysis.title"),
+      description: t("demo.salesAnalysis.description"),
       embedUrl: "https://demo-proyecto-1.vercel.app", // Placeholder URL
     },
     {
@@ -28,11 +34,9 @@ export default function DemosPage() {
             <div className="w-8 h-8 bg-accent rounded-lg animate-float"></div>
           </div>
           <h1 className="text-5xl font-bold bg-gradient-to-r from-foreground to-muted bg-clip-text text-transparent mb-6">
-            Demos Interactivas
+            {t("demos.title")}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explora las demos interactivas de mis proyectos de análisis de datos en tiempo real.
-          </p>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">{t("demos.subtitle")}</p>
         </div>
 
         <div className="space-y-12">
@@ -82,7 +86,7 @@ export default function DemosPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Volver a Proyectos
+            {t("demos.backToProjects")}
           </a>
         </div>
       </div>

@@ -2,14 +2,17 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useLanguage } from "@/contexts/LanguageContext"
+import { LanguageSelector } from "@/components/LanguageSelector"
 
 export function Navbar() {
   const pathname = usePathname()
+  const { t } = useLanguage()
 
   const navItems = [
-    { href: "/", label: "Sobre mí" },
-    { href: "/proyectos", label: "Proyectos" },
-    { href: "/contacto", label: "Contacto" },
+    { href: "/", label: t("nav.about") },
+    { href: "/proyectos", label: t("nav.projects") },
+    { href: "/contacto", label: t("nav.contact") },
   ]
 
   return (
@@ -19,7 +22,7 @@ export function Navbar() {
           href="/"
           className="text-xl font-bold font-manrope text-foreground hover:text-accent transition-all duration-300 hover:scale-105"
         >
-          DataAnalyst
+          {t("nav.brand")}
         </Link>
 
         <div className="flex items-center space-x-8">
@@ -39,6 +42,8 @@ export function Navbar() {
               />
             </Link>
           ))}
+
+          <LanguageSelector />
         </div>
       </nav>
     </header>

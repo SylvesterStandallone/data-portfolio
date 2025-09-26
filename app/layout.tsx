@@ -2,6 +2,7 @@ import type React from "react"
 import { Inter, Manrope } from "next/font/google"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
+import { LanguageProvider } from "@/contexts/LanguageContext"
 import "./globals.css"
 
 const inter = Inter({
@@ -24,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${manrope.variable} antialiased dark`}>
       <body className="font-sans bg-background text-foreground min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )

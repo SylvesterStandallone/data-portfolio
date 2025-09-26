@@ -9,8 +9,10 @@ import { Label } from "@/components/ui/label"
 import { Github, Linkedin, Mail, Send, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function ContactoPage() {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -31,7 +33,6 @@ export default function ContactoPage() {
   }
 
   return (
-    /* Updated with modern fluid layout and enhanced design */
     <div className="min-h-screen bg-gradient-to-br from-background via-card/30 to-background py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
@@ -40,18 +41,15 @@ export default function ContactoPage() {
               <Mail className="w-8 h-8 text-accent animate-float" />
             </div>
             <h1 className="text-5xl font-bold bg-gradient-to-r from-foreground to-muted bg-clip-text text-transparent mb-6">
-              Conectemos
+              {t("contact.title")}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Estoy disponible para oportunidades de colaboración y nuevos proyectos. No dudes en ponerte en contacto
-              para discutir cómo podemos trabajar juntos.
-            </p>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">{t("contact.subtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 animate-slide-up">
             <div className="space-y-8">
               <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-8">
-                <h2 className="text-2xl font-semibold text-foreground mb-6">Información de Contacto</h2>
+                <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.info.title")}</h2>
 
                 <div className="space-y-6">
                   <div className="flex items-center group">
@@ -59,7 +57,7 @@ export default function ContactoPage() {
                       <Mail className="w-5 h-5 text-accent" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="text-sm text-muted-foreground">{t("contact.info.email")}</p>
                       <a
                         href="mailto:ivan.e90@gmail.com"
                         className="text-foreground hover:text-accent transition-colors"
@@ -74,8 +72,8 @@ export default function ContactoPage() {
                       <MapPin className="w-5 h-5 text-accent" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Ubicación</p>
-                      <p className="text-foreground">Santiago del Estero, Argentina</p>
+                      <p className="text-sm text-muted-foreground">{t("contact.info.location")}</p>
+                      <p className="text-foreground">{t("contact.info.locationValue")}</p>
                     </div>
                   </div>
 
@@ -84,14 +82,14 @@ export default function ContactoPage() {
                       <Phone className="w-5 h-5 text-accent" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Teléfono</p>
+                      <p className="text-sm text-muted-foreground">{t("contact.info.phone")}</p>
                       <p className="text-foreground">+543855061551</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-border/50">
-                  <p className="text-sm text-muted-foreground mb-4">Sígueme en redes sociales</p>
+                  <p className="text-sm text-muted-foreground mb-4">{t("contact.info.socialMedia")}</p>
                   <div className="flex space-x-4">
                     <Link
                       href="https://www.linkedin.com/in/ivanges/"
@@ -116,12 +114,12 @@ export default function ContactoPage() {
             </div>
 
             <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-8">
-              <h2 className="text-2xl font-semibold text-foreground mb-6">Envíame un Mensaje</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-6">{t("contact.form.title")}</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="nombre" className="text-sm font-medium text-foreground mb-2 block">
-                    Nombre Completo
+                    {t("contact.form.name")}
                   </Label>
                   <Input
                     id="nombre"
@@ -131,13 +129,13 @@ export default function ContactoPage() {
                     value={formData.nombre}
                     onChange={handleChange}
                     className="bg-background/50 border-border/50 focus:border-accent/50 focus:ring-accent/20"
-                    placeholder="Tu nombre completo"
+                    placeholder={t("contact.form.name.placeholder")}
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="email" className="text-sm font-medium text-foreground mb-2 block">
-                    Correo Electrónico
+                    {t("contact.form.email")}
                   </Label>
                   <Input
                     id="email"
@@ -147,13 +145,13 @@ export default function ContactoPage() {
                     value={formData.email}
                     onChange={handleChange}
                     className="bg-background/50 border-border/50 focus:border-accent/50 focus:ring-accent/20"
-                    placeholder="tu-email@ejemplo.com"
+                    placeholder={t("contact.form.email.placeholder")}
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="mensaje" className="text-sm font-medium text-foreground mb-2 block">
-                    Mensaje
+                    {t("contact.form.message")}
                   </Label>
                   <Textarea
                     id="mensaje"
@@ -163,7 +161,7 @@ export default function ContactoPage() {
                     onChange={handleChange}
                     className="bg-background/50 border-border/50 focus:border-accent/50 focus:ring-accent/20 min-h-[120px]"
                     rows={5}
-                    placeholder="Cuéntame sobre tu proyecto o consulta..."
+                    placeholder={t("contact.form.message.placeholder")}
                   />
                 </div>
 
@@ -172,7 +170,7 @@ export default function ContactoPage() {
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-accent/25 transition-all"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Enviar Mensaje
+                  {t("contact.form.submit")}
                 </Button>
               </form>
             </div>
