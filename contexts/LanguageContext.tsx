@@ -86,9 +86,9 @@ const translations = {
 
     // Demos page
     "demos.title": "Demos Interactivas",
-    "demos.subtitle": "Explora las demos interactivas de mis proyectos de análisis de datos en tiempo real.",
+    "demos.subtitle": "Explora las demos interactivas de mis proyectos de análisis de datos en tiempo real. (PRONTO)",
     "demos.backToProjects": "Volver a Proyectos",
-    "demo.salesAnalysis.title": "Análisis de Ventas E-commerce",
+    "demo.salesAnalysis.title": "Análisis de Ventas E-commerce (PRONTO)",
     "demo.salesAnalysis.description":
       "Dashboard interactivo para análisis de patrones de compra y predicción de demanda",
   },
@@ -161,9 +161,9 @@ const translations = {
 
     // Demos page
     "demos.title": "Interactive Demos",
-    "demos.subtitle": "Explore interactive demos of my real-time data analysis projects.",
+    "demos.subtitle": "Explore interactive demos of my real-time data analysis projects. (COMING SOON)",
     "demos.backToProjects": "Back to Projects",
-    "demo.salesAnalysis.title": "E-commerce Sales Analysis",
+    "demo.salesAnalysis.title": "E-commerce Sales Analysis (COMING SOON)",
     "demo.salesAnalysis.description": "Interactive dashboard for purchase pattern analysis and demand prediction",
   },
 }
