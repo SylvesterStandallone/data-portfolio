@@ -31,7 +31,6 @@ export default function ProyectosPage() {
       images: [
         "/customer-data-analysis-charts.jpg",
         "/sales-data-visualization-graphs.jpg",
-        "/ecommerce-dashboard-analytics-charts.jpg",
       ],
       githubUrl: "#",
     },
