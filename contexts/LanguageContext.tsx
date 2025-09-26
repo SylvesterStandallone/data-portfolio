@@ -91,6 +91,9 @@ const translations = {
     "demo.salesAnalysis.title": "Análisis de Ventas E-commerce (PRONTO)",
     "demo.salesAnalysis.description":
       "Dashboard interactivo para análisis de patrones de compra y predicción de demanda",
+
+    "alert.comingSoon": "Próximamente",
+    "alert.githubComingSoon": "El código estará disponible próximamente",
   },
   en: {
     // Navigation
@@ -165,6 +168,9 @@ const translations = {
     "demos.backToProjects": "Back to Projects",
     "demo.salesAnalysis.title": "E-commerce Sales Analysis (COMING SOON)",
     "demo.salesAnalysis.description": "Interactive dashboard for purchase pattern analysis and demand prediction",
+
+    "alert.comingSoon": "Coming Soon",
+    "alert.githubComingSoon": "Code will be available soon",
   },
 }
 

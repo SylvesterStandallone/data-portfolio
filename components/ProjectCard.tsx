@@ -1,8 +1,13 @@
+"use client"
+
+import type React from "react"
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Github, ExternalLink, BarChart3 } from "lucide-react"
 import { ImageSlider } from "./ImageSlider"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 interface ProjectCardProps {
   title: string
@@ -14,6 +19,13 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ title, description, technologies, githubUrl, demoId, images = [] }: ProjectCardProps) {
+  const { t } = useLanguage()
+
+  const handleGithubClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    alert(t("alert.githubComingSoon"))
+  }
+
   return (
     <Card className="group h-full flex flex-col bg-card/50 backdrop-blur-sm border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2">
       <CardHeader className="pb-4">
@@ -50,13 +62,11 @@ export function ProjectCard({ title, description, technologies, githubUrl, demoI
         <Button
           variant="outline"
           size="sm"
-          asChild
+          onClick={handleGithubClick}
           className="flex-1 bg-transparent border-accent/20 text-accent hover:bg-accent/10 hover:border-accent/40 transition-all"
         >
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-            <Github className="w-4 h-4 mr-2" />
-            Código
-          </a>
+          <Github className="w-4 h-4 mr-2" />
+          Código
         </Button>
 
         <Button

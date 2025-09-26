@@ -14,14 +14,23 @@ export default function DemosPage() {
     },
     {
       id: "customer-segmentation",
-      title: "Segmentación de Clientes",
-      description: "Modelo de clustering para identificar segmentos de clientes",
+      title: t("language") === "es" ? "Segmentación de Clientes (PRONTO)" : "Customer Segmentation (COMING SOON)",
+      description:
+        t("language") === "es"
+          ? "Modelo de clustering para identificar segmentos de clientes"
+          : "Clustering model to identify customer segments",
       embedUrl: "https://demo-proyecto-2.vercel.app", // Placeholder URL
     },
     {
       id: "real-estate-prediction",
-      title: "Predicción de Precios Inmobiliarios",
-      description: "Sistema de predicción de precios usando machine learning",
+      title:
+        t("language") === "es"
+          ? "Predicción de Precios Inmobiliarios (PRONTO)"
+          : "Real Estate Price Prediction (COMING SOON)",
+      description:
+        t("language") === "es"
+          ? "Sistema de predicción de precios usando machine learning"
+          : "Price prediction system using machine learning",
       embedUrl: "https://demo-proyecto-3.vercel.app", // Placeholder URL
     },
   ]
@@ -55,11 +64,27 @@ export default function DemosPage() {
               <div className="relative w-full h-96 bg-muted/20 rounded-2xl border border-border/30 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <div className="w-8 h-8 bg-accent rounded-lg animate-pulse"></div>
+                    <div className="w-24 h-24 bg-accent/10 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                      <svg
+                        className="w-12 h-12 text-accent animate-pulse"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Demo Placeholder</h3>
-                    <p className="text-sm text-muted-foreground">La demo interactiva se cargará aquí</p>
+                    <h3 className="text-2xl font-bold text-accent mb-3">{t("alert.comingSoon")}</h3>
+                    <p className="text-lg text-muted-foreground">
+                      {t("language") === "es"
+                        ? "La demo interactiva estará disponible próximamente"
+                        : "Interactive demo will be available soon"}
+                    </p>
                   </div>
                 </div>
 
