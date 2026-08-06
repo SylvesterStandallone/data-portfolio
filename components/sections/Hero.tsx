@@ -66,7 +66,7 @@ export function Hero() {
           />
 
           {/* Floating terminal */}
-          <div className="absolute -bottom-10 md:-bottom-14 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 z-20 w-64 md:w-80 rounded-xl border border-border bg-terminal p-4 shadow-2xl">
+          <div className="absolute -top-10 md:-top-16 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 lg:-right-10 z-20 w-64 md:w-80 rounded-xl border border-border bg-terminal p-4 shadow-2xl">
             <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
               <div className="flex gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#EF4444]" />
