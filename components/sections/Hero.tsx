@@ -66,16 +66,18 @@ export function Hero() {
           />
 
           {/* Floating terminal */}
-          <div className="absolute -top-10 md:-top-16 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 lg:-right-10 z-20 w-64 md:w-80 rounded-xl border border-border bg-terminal p-4 shadow-2xl">
-            <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
-              <div className="flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#EF4444]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#EAB308]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#22C55E]" />
+          <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 md:left-2 md:translate-x-0 z-20 w-44 md:w-56 rounded-lg border border-border bg-terminal p-3 shadow-2xl">
+            <div className="mb-2 flex items-center justify-between border-b border-border pb-1.5">
+              <div className="flex gap-1">
+                <span className="h-2 w-2 rounded-full bg-[#EF4444]" />
+                <span className="h-2 w-2 rounded-full bg-[#EAB308]" />
+                <span className="h-2 w-2 rounded-full bg-[#22C55E]" />
               </div>
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">SQL</span>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                SQL
+              </span>
             </div>
-            <pre className="overflow-x-auto font-mono text-[13px] leading-relaxed text-muted-foreground">
+            <pre className="overflow-x-auto font-mono text-[9px] leading-relaxed text-muted-foreground">
               <code>
                 <span className="text-primary">SELECT</span> status,{"\n"}
                 <span className="text-[#A78BFA]">COUNT</span>
