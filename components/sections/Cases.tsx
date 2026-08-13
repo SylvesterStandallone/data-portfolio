@@ -1,13 +1,8 @@
 "use client"
 
-import { Cloud, Network } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { content } from "@/lib/content"
-
-const icons = {
-  hub: Network,
-  cloud: Cloud,
-} as const
+import { caseVisuals } from "./CaseVisuals"
 
 export function Cases() {
   const { language } = useLanguage()
@@ -21,7 +16,7 @@ export function Cases() {
 
       <div className="space-y-6">
         {c.items.map((item, i) => {
-          const Icon = icons[item.icon as keyof typeof icons]
+          const Visual = caseVisuals[item.icon as keyof typeof caseVisuals]
           const reverse = i % 2 === 1
           return (
             <div
@@ -33,8 +28,8 @@ export function Cases() {
                   reverse ? "md:order-2" : ""
                 }`}
               >
-                <Icon className="h-16 w-16 text-muted-foreground/20" strokeWidth={1} />
-                <div className="absolute inset-0 bg-primary/5 transition-colors group-hover:bg-primary/10" />
+                <Visual lang={language} />
+                <div className="pointer-events-none absolute inset-0 bg-primary/5 transition-colors group-hover:bg-primary/0" />
               </div>
               <div className={`w-full md:w-2/3 ${reverse ? "md:order-1" : ""}`}>
                 <div className="mb-3 flex flex-wrap gap-2">

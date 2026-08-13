@@ -66,7 +66,7 @@ export const content = {
           tags: ["SQL Server", "T-SQL"],
           title: "Optimización de ERP Core",
           description:
-            "Rediseño completo de la arquitectura de base de datos para un ERP de manufactura, reduciendo los tiempos de consulta en un 80% y eliminando bloqueos concurrentes durante cierres contables.",
+            "Rediseño completo de la arquitectura de base de datos para un ERP de manufactura, reduciendo los tiempos de consulta en un 67% y eliminando bloqueos concurrentes durante cierres contables.",
         },
         {
           icon: "cloud",
@@ -190,7 +190,7 @@ export const content = {
           tags: ["SQL Server", "T-SQL"],
           title: "ERP Core Optimization",
           description:
-            "Complete redesign of the database architecture for a manufacturing ERP, reducing query times by 80% and eliminating concurrent locks during accounting closes.",
+            "Complete redesign of the database architecture for a manufacturing ERP, reducing query times by 67% and eliminating concurrent locks during accounting closes.",
         },
         {
           icon: "cloud",

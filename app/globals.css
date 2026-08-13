@@ -128,4 +128,36 @@
   .glow-cyan-soft {
     box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
   }
+
+  /* Flujo de datos en los SVG de los casos de estudio */
+  .case-flow {
+    animation: case-flow-dash 1.4s linear infinite;
+  }
+
+  .case-pulse {
+    animation: case-pulse-fade 1.8s ease-in-out infinite;
+  }
+
+  @keyframes case-flow-dash {
+    to {
+      stroke-dashoffset: -12;
+    }
+  }
+
+  @keyframes case-pulse-fade {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-flow,
+    .case-pulse {
+      animation: none;
+    }
+  }
 }

@@ -57,7 +57,7 @@ export function Hero() {
         <div className="relative mt-12 md:mt-0">
           <div className="absolute inset-0 rounded-full bg-primary/10 blur-3xl" />
           <Image
-            src="/ivan-portrait.png"
+            src="/ivan-portrait.jpg"
             alt="Iván Gabriel — Data Engineer"
             width={520}
             height={520}
