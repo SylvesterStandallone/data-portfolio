@@ -20,6 +20,13 @@ const labels = {
     zdtAlt: "Diagrama: migración con dual-write desde on-premise hacia Forsta, 100% de uptime e integridad",
     checksum: "checksum por lote",
     integrity: "100% · 0 filas perdidas",
+    fireAlt:
+      "Diagrama: pipeline que descarga, limpia y modela 325.174 focos de incendio detectados por satélite sobre Argentina",
+    detected: "FOCOS DETECTADOS",
+    total: "325.174",
+    perDay: "3.654 / día",
+    coverage: "23 provincias · 396 municipios",
+    window: "ene–mar 2022 · 90 días",
   },
   en: {
     erpAlt: "Diagram: index redesign cutting query time from 2.4s to 0.8s",
@@ -30,6 +37,13 @@ const labels = {
     zdtAlt: "Diagram: dual-write migration from on-premise to Forsta, 100% uptime and integrity",
     checksum: "checksum per batch",
     integrity: "100% · 0 rows lost",
+    fireAlt:
+      "Diagram: pipeline downloading, cleaning and modeling 325,174 satellite-detected fire hotspots across Argentina",
+    detected: "HOTSPOTS DETECTED",
+    total: "325,174",
+    perDay: "3,654 / day",
+    coverage: "23 provinces · 396 municipalities",
+    window: "Jan–Mar 2022 · 90 days",
   },
 } satisfies Record<Lang, Record<string, string | string[]>>
 
@@ -248,7 +262,133 @@ export function ZeroDowntimeVisual({ lang }: { lang: Lang }) {
   )
 }
 
+/*
+  Caso 3 — Focos de incendio.
+  Serie diaria normalizada (0-1) del trimestre ene-mar 2022: el pico esta a
+  principios de enero y decae hacia marzo, igual que en el dashboard.
+*/
+const FIRE_SERIES = [
+  0.18, 0.52, 0.95, 0.61, 0.79, 0.44, 0.3, 0.57, 0.71, 0.39, 0.51, 0.34, 0.61, 0.27, 0.43, 0.32, 0.49, 0.24, 0.37,
+  0.21, 0.29, 0.17, 0.25, 0.33, 0.19, 0.14, 0.21, 0.11, 0.17, 0.09, 0.13, 0.07,
+]
+
+/* base/h dejan el pico de la serie por debajo de la linea de cobertura (y=120). */
+const SPARK = { x: 168, w: 214, base: 160, h: 30 }
+
+const sparkPoints = FIRE_SERIES.map((v, i) => ({
+  x: SPARK.x + (i * SPARK.w) / (FIRE_SERIES.length - 1),
+  y: SPARK.base - v * SPARK.h,
+}))
+const sparkLine = sparkPoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ")
+const sparkArea = `${sparkLine} L${(SPARK.x + SPARK.w).toFixed(1)} ${SPARK.base} L${SPARK.x} ${SPARK.base} Z`
+
+/* Silueta estilizada de Argentina y focos, concentrados en el noreste (Corrientes/Formosa). */
+const AR_PATH = "M52 44 L86 47 L95 68 L90 90 L82 112 L74 130 L66 148 L59 170 L52 146 L47 118 L44 92 L46 68 Z"
+
+const FIRE_DOTS = [
+  { cx: 90, cy: 70, r: 6 },
+  { cx: 88, cy: 59, r: 4.2 },
+  { cx: 83, cy: 64, r: 2.8 },
+  { cx: 81, cy: 79, r: 3.4 },
+  { cx: 75, cy: 89, r: 2.4 },
+  { cx: 71, cy: 70, r: 2 },
+  { cx: 65, cy: 55, r: 1.8 },
+  { cx: 73, cy: 104, r: 1.8 },
+  { cx: 57, cy: 99, r: 1.4 },
+  { cx: 60, cy: 130, r: 1.2 },
+]
+
+/** Caso 3 — Focos de incendio: scraping → limpieza → modelado → tablero. */
+export function FireHotspotsVisual({ lang }: { lang: Lang }) {
+  const l = labels[lang]
+
+  return (
+    <svg viewBox="0 0 400 225" className="h-full w-full" role="img" aria-label={l.fireAlt}>
+      <Defs id="fire" />
+      <rect width="400" height="225" fill="#050505" />
+      <rect width="400" height="225" fill="url(#fire)" />
+
+      <text x="18" y="26" fill="#98a2b3" fontFamily={MONO} fontSize="9" letterSpacing="1.2">
+        DATA PIPELINE
+      </text>
+      <line x1="18" y1="32" x2="382" y2="32" stroke="#2d3139" strokeWidth="1" />
+
+      {/* Mapa con focos */}
+      <path d={AR_PATH} fill="#14171d" stroke="#2d3139" strokeWidth="1" />
+      {FIRE_DOTS.map((d) => (
+        <circle
+          key={`${d.cx}-${d.cy}`}
+          cx={d.cx}
+          cy={d.cy}
+          r={d.r}
+          fill="#22d3ee"
+          fillOpacity="0.55"
+          filter="url(#fire-glow)"
+        />
+      ))}
+      <circle cx="90" cy="70" r="10" fill="none" stroke="#22d3ee" strokeOpacity="0.35" className="case-pulse" />
+
+      {/* KPIs */}
+      <text x="168" y="56" fill="#98a2b3" fontFamily={MONO} fontSize="8" letterSpacing="1">
+        {l.detected}
+      </text>
+      <text x="168" y="86" fill="#22d3ee" fontFamily={MONO} fontSize="27" fontWeight="600">
+        {l.total}
+      </text>
+      <text x="168" y="104" fill="#f5f7fa" fontFamily={MONO} fontSize="10">
+        {l.perDay}
+      </text>
+      <text x="168" y="120" fill="#98a2b3" fontFamily={MONO} fontSize="8">
+        {l.coverage}
+      </text>
+
+      {/* Evolución diaria */}
+      <path d={sparkArea} fill="#22d3ee" fillOpacity="0.1" />
+      <path d={sparkLine} fill="none" stroke="#22d3ee" strokeOpacity="0.8" strokeWidth="1.4" strokeLinejoin="round" />
+      <line x1={SPARK.x} y1={SPARK.base} x2={SPARK.x + SPARK.w} y2={SPARK.base} stroke="#2d3139" strokeWidth="1" />
+      <text x={SPARK.x} y="172" fill="#98a2b3" fontFamily={MONO} fontSize="7.5">
+        {l.window}
+      </text>
+
+      {/* Cadena del pipeline */}
+      {[
+        { x: 18, w: 84, label: "playwright" },
+        { x: 112, w: 74, label: "pandas" },
+        { x: 196, w: 58, label: "dax" },
+        { x: 264, w: 118, label: "power bi" },
+      ].map((n, i, arr) => (
+        <g key={n.label}>
+          <rect
+            x={n.x}
+            y="182"
+            width={n.w}
+            height="22"
+            rx="4"
+            fill={i === arr.length - 1 ? "#0b0d11" : "#14171d"}
+            stroke={i === arr.length - 1 ? "#22d3ee" : "#2d3139"}
+            strokeOpacity={i === arr.length - 1 ? 0.6 : 1}
+          />
+          <text
+            x={n.x + n.w / 2}
+            y="197"
+            fill={i === arr.length - 1 ? "#22d3ee" : "#98a2b3"}
+            fontFamily={MONO}
+            fontSize="9"
+            textAnchor="middle"
+          >
+            {n.label}
+          </text>
+          {i < arr.length - 1 && (
+            <path d={`M${n.x + n.w + 2} 193h5`} stroke="#2d3139" strokeWidth="1.5" strokeLinecap="round" />
+          )}
+        </g>
+      ))}
+    </svg>
+  )
+}
+
 export const caseVisuals = {
   hub: ErpCoreVisual,
   cloud: ZeroDowntimeVisual,
+  fire: FireHotspotsVisual,
 } as const

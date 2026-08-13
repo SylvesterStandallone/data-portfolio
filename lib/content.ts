@@ -75,7 +75,28 @@ export const content = {
           description:
             "Ejecución de una migración crítica de datos históricos hacia la plataforma Forsta sin interrupción del servicio, garantizando 100% de integridad de datos para operaciones globales.",
         },
+        {
+          icon: "fire",
+          tags: ["Playwright", "Pandas", "Power BI"],
+          title: "Análisis de Focos de Incendio",
+          description:
+            "Pipeline que descarga con Playwright el dataset público de detecciones satelitales, lo limpia con Pandas y lo modela con DAX en Power BI. El tablero resume 325.174 focos sobre 23 provincias y 396 municipios, con evolución diaria, nivel de riesgo y comportamiento de 14 satélites. Proyecto de certificación en análisis de datos.",
+          gallery: [
+            { src: "/focos/focos-1.jpg", caption: "Vista general: KPIs, ranking de provincias y municipios, y distribución por riesgo de fuego." },
+            { src: "/focos/focos-2.jpg", caption: "Distribución geográfica y por FRP, con mapa de calor sobre el territorio." },
+            { src: "/focos/focos-3.jpg", caption: "Evolución temporal diaria y semanal, con filtros por provincia y satélite." },
+            { src: "/focos/focos-4.jpg", caption: "Comportamiento de los 14 satélites que aportan detecciones." },
+            { src: "/focos/focos-5.jpg", caption: "Guía de lectura de las tarjetas por satélite." },
+            { src: "/focos/focos-6.jpg", caption: "Dispersión de focos por satélite, con el FRP promedio en el tamaño de la burbuja." },
+            { src: "/focos/focos-7.jpg", caption: "Portada del tablero y navegación entre secciones." },
+          ],
+        },
       ],
+      viewGallery: "Ver dashboard",
+      close: "Cerrar",
+      prev: "Anterior",
+      next: "Siguiente",
+      pageOf: "Página {n} de {total}",
     },
     stack: {
       title: "Stack Tecnológico",
@@ -203,7 +224,28 @@ export const content = {
           description:
             "Execution of a critical historical data migration to the Forsta platform without service interruption, guaranteeing 100% data integrity for global operations.",
         },
+        {
+          icon: "fire",
+          tags: ["Playwright", "Pandas", "Power BI"],
+          title: "Fire Hotspot Analysis",
+          description:
+            "Pipeline that pulls a public satellite-detection dataset with Playwright, cleans it with Pandas and models it with DAX in Power BI. The dashboard covers 325,174 hotspots across 23 provinces and 396 municipalities, with daily evolution, fire-risk levels and the behaviour of 14 satellites. Data analytics certification project.",
+          gallery: [
+            { src: "/focos/focos-1.jpg", caption: "Overview: KPIs, province and municipality rankings, and distribution by fire risk." },
+            { src: "/focos/focos-2.jpg", caption: "Geographic and FRP distribution, with a heat map over the territory." },
+            { src: "/focos/focos-3.jpg", caption: "Daily and weekly evolution, filterable by province and satellite." },
+            { src: "/focos/focos-4.jpg", caption: "Behaviour of the 14 satellites feeding detections." },
+            { src: "/focos/focos-5.jpg", caption: "How to read the per-satellite cards." },
+            { src: "/focos/focos-6.jpg", caption: "Hotspots per satellite, with average FRP encoded in bubble size." },
+            { src: "/focos/focos-7.jpg", caption: "Dashboard cover and section navigation." },
+          ],
+        },
       ],
+      viewGallery: "View dashboard",
+      close: "Close",
+      prev: "Previous",
+      next: "Next",
+      pageOf: "Page {n} of {total}",
     },
     stack: {
       title: "Tech Stack",

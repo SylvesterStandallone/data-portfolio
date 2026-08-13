@@ -3,6 +3,7 @@
 import { useLanguage } from "@/contexts/LanguageContext"
 import { content } from "@/lib/content"
 import { caseVisuals } from "./CaseVisuals"
+import { CaseGallery } from "./CaseGallery"
 
 export function Cases() {
   const { language } = useLanguage()
@@ -46,6 +47,19 @@ export function Cases() {
                   {item.title}
                 </h3>
                 <p className="font-sans text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                {"gallery" in item && (
+                  <CaseGallery
+                    images={item.gallery}
+                    title={item.title}
+                    labels={{
+                      viewGallery: c.viewGallery,
+                      close: c.close,
+                      prev: c.prev,
+                      next: c.next,
+                      pageOf: c.pageOf,
+                    }}
+                  />
+                )}
               </div>
             </div>
           )

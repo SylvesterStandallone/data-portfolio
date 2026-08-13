@@ -70,6 +70,20 @@ with the palette above by hand. Each visual takes a `lang` prop and pulls its te
 Numbers shown in these SVGs are load-bearing: bar heights are proportional to the values they label, and the
 percentage badge must match both the bars and the prose in `content.ts`. Change all three together.
 
+Coordinates are absolute and unmanaged, so overlapping text is the usual failure: when adding an element, check
+the `y` values of its neighbours rather than assuming layout will reflow — nothing here does.
+
+### Case galleries
+
+A case study may carry an optional `gallery` array (`{ src, caption }`) in `content.ts`; `CaseGallery.tsx` renders
+the trigger button and a full-screen viewer with keyboard nav (←/→/Escape) and a body-scroll lock. Because
+`items` is `as const`, the entries form a union where only some members have `gallery`, so `Cases.tsx` must guard
+with `{"gallery" in item && ...}` — a bare `item.gallery` will not typecheck.
+
+The viewer caps the image with `max-h-[65vh]`, not `max-h-full`: the flex wrapper uses `items-center` and so is
+sized by the image itself, which makes a percentage max-height resolve to no constraint and lets tall images
+overlap the caption on short viewports.
+
 ### Metadata and social previews
 
 The favicon and share images use Next's file conventions in `app/`: `icon.png`, `apple-icon.png`,
@@ -86,9 +100,13 @@ Vercel, with the repo auto-synced from v0.app (see `README.md`) — changes made
 `images.unoptimized: true`, so `next/image` emits plain `<img>` and files in `public/` are served verbatim; there
 is no automatic resizing or format conversion, which makes oversized source images a real payload cost.
 
-`public/` is deliberately minimal — `logo.png`, `ivan-portrait.jpg`, `cv.pdf`, and nothing else. Unreferenced
-assets were moved to `public/dead/`, which is gitignored: it exists on disk but is neither committed nor
-deployed. Put anything you retire there rather than deleting it.
+`public/` is deliberately minimal — `logo.png`, `ivan-portrait.jpg`, `cv.pdf`, and `focos/` (the seven dashboard
+pages behind the fire-hotspots gallery). Unreferenced assets were moved to `public/dead/`, which is gitignored:
+it exists on disk but is neither committed nor deployed. Put anything you retire there rather than deleting it.
+
+Screenshots are stored as JPEG, not PNG — the `focos/` set went from 690 KB to 261 KB at quality 88 with no
+visible loss at the size they are displayed. Since nothing resizes images at build time, converting by hand is
+the only compression this project gets.
 
 ### Filename case is a production-only trap
 
