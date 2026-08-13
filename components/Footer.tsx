@@ -8,9 +8,9 @@ export function Footer() {
   const c = content[language].footer
 
   const social = [
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "GitHub", href: "https://github.com" },
-    { label: "Email", href: "mailto:hola@ivangabriel.dev" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/ivanges" },
+    { label: "GitHub", href: "https://github.com/sylvesterstandallone" },
+    { label: "Email", href: "mailto:ivan.e90@gmail.com" },
   ]
 
   return (

@@ -5,10 +5,31 @@ import { CalendarCheck, Check } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { content } from "@/lib/content"
 
+/** Número de WhatsApp en formato wa.me: solo dígitos, sin "+" ni separadores. */
+const WHATSAPP_NUMBER = "5493856276194"
+
 export function Contact() {
   const { language } = useLanguage()
   const c = content[language].contact
   const [sent, setSent] = useState(false)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const data = new FormData(e.currentTarget)
+    const get = (k: string) => String(data.get(k) ?? "").trim()
+
+    const text = c.waTemplate
+      .replace("{name}", get("name"))
+      .replace("{email}", get("email"))
+      .replace("{challenge}", get("challenge") || c.waEmptyChallenge)
+
+    setSent(true)
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer",
+    )
+  }
 
   const fieldClass =
     "w-full rounded-md border border-border bg-background p-3 font-sans text-base text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
@@ -24,13 +45,7 @@ export function Contact() {
             </h2>
             <p className="font-sans text-base text-muted-foreground mb-8 leading-relaxed">{c.subtitle}</p>
 
-            <form
-              className="space-y-4"
-              onSubmit={(e) => {
-                e.preventDefault()
-                setSent(true)
-              }}
-            >
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className={labelClass}>
                   {c.name}
@@ -72,7 +87,9 @@ export function Contact() {
             </h3>
             <p className="font-sans text-base text-muted-foreground mb-8 leading-relaxed">{c.scheduleText}</p>
             <a
-              href="#"
+              href="https://cal.com/ivan-espindola-egxczc/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md border border-primary px-8 py-4 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:bg-primary/10 w-full md:w-auto"
             >
               {c.scheduleCta}

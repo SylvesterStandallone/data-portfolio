@@ -102,8 +102,12 @@ export const content = {
       name: "Nombre",
       email: "Email",
       challenge: "Desafío principal",
-      submit: "Enviar mensaje",
-      sent: "Mensaje enviado",
+      submit: "Enviar por WhatsApp",
+      sent: "Abriendo WhatsApp",
+      // {name} / {email} / {challenge} se reemplazan al armar el link de wa.me
+      waTemplate:
+        "Hola Iván, soy {name} ({email}).\n\nEl proceso que quiero arreglar:\n{challenge}",
+      waEmptyChallenge: "(sin detallar)",
       scheduleTitle: "Agenda directa",
       scheduleText:
         "Revisá mi disponibilidad y seleccioná un horario para una videollamada de 30 minutos.",
@@ -226,8 +230,11 @@ export const content = {
       name: "Name",
       email: "Email",
       challenge: "Main challenge",
-      submit: "Send message",
-      sent: "Message sent",
+      submit: "Send via WhatsApp",
+      sent: "Opening WhatsApp",
+      // {name} / {email} / {challenge} are replaced when building the wa.me link
+      waTemplate: "Hi Iván, I'm {name} ({email}).\n\nThe process I want to fix:\n{challenge}",
+      waEmptyChallenge: "(not specified)",
       scheduleTitle: "Direct scheduling",
       scheduleText: "Check my availability and pick a slot for a 30-minute video call.",
       scheduleCta: "Open Calendar",
