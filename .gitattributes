@@ -1,0 +1,15 @@
+# Normaliza los finales de linea: LF en el repo y en el working copy.
+# Evita el warning "LF will be replaced by CRLF" que genera core.autocrlf=true
+# en Windows, y mantiene el diff limpio entre maquinas y el build de Vercel.
+* text=auto eol=lf
+
+# Binarios: git no debe tocarlos nunca.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
