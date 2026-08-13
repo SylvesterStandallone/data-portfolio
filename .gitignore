@@ -25,3 +25,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# assets sin usar, se conservan localmente pero no se deployan
+/public/dead/

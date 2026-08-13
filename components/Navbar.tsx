@@ -16,9 +16,7 @@ export function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="max-w-[1280px] mx-auto flex items-center justify-between h-20 px-5 md:px-16">
         <Link href="#top" className="flex items-center gap-2" aria-label="Iván Gabriel — inicio">
-          <span className="flex items-center justify-center rounded bg-foreground/95 p-1.5">
-            <Image src="/logo.png" alt="Iván Gabriel logo" width={72} height={24} className="h-5 w-auto" priority />
-          </span>
+          <Image src="/logo.png" alt="Iván Gabriel" width={200} height={91} className="h-8 w-auto" priority />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

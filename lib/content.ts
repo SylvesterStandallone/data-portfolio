@@ -126,7 +126,7 @@ export const content = {
           { href: "#contacto", label: "Contacto" },
         ],
       ],
-      copyright: "© 2024 Iván Gabriel. Data Engineering Architect.",
+      copyright: "© 2026 Iván Gabriel Espindola. Todos los derechos reservados.",
     },
   },
   en: {
@@ -252,7 +252,7 @@ export const content = {
           { href: "#contacto", label: "Contact" },
         ],
       ],
-      copyright: "© 2024 Iván Gabriel. Data Engineering Architect.",
+      copyright: "© 2026 Iván Gabriel Espindola. All rights reserved.",
     },
   },
 } as const
