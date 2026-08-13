@@ -26,10 +26,38 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
 })
 
+const title = "Iván Gabriel — Data Engineer"
+const description =
+  "Data Engineering Architect. Diseño, construyo y optimizo infraestructuras de datos escalables: pipelines ETL, modelado de datos y migraciones cloud con cero downtime."
+
+/*
+  Base para las URL absolutas de las previews (og:image, canonical).
+  Cuando haya dominio propio se define NEXT_PUBLIC_SITE_URL en Vercel y
+  este valor deja de usarse, sin tocar el código.
+*/
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ivangabrieldata.vercel.app"
+
 export const metadata: Metadata = {
-  title: "Iván Gabriel — Data Engineer",
-  description:
-    "Data Engineering Architect. Diseño, construyo y optimizo infraestructuras de datos escalables: pipelines ETL, modelado de datos y migraciones cloud con cero downtime.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  // Las imágenes salen de app/opengraph-image.png y app/twitter-image.png
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: "/",
+    siteName: "Iván Gabriel",
+    title,
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  alternates: {
+    canonical: "/",
+  },
   generator: "v0.app",
 }
 
