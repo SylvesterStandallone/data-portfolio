@@ -62,7 +62,7 @@ export function Hero() {
             width={520}
             height={520}
             priority
-            className="relative z-10 mx-auto w-full max-w-md aspect-square rounded-xl border border-border object-cover grayscale"
+            className="relative z-10 mx-auto w-full max-w-md aspect-square rounded-xl border border-border object-cover grayscale hover:grayscale-0 transition-all duration-300"
           />
 
           {/* Floating terminal */}
