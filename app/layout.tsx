@@ -34,8 +34,24 @@ const description =
   Base para las URL absolutas de las previews (og:image, canonical).
   Cuando haya dominio propio se define NEXT_PUBLIC_SITE_URL en Vercel y
   este valor deja de usarse, sin tocar el código.
+
+  Se normaliza el esquema a mano: new URL() lanza ERR_INVALID_URL si la
+  variable viene como "midominio.com", y eso rompe el build entero.
 */
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ivangabrieldata.vercel.app"
+const DEFAULT_SITE_URL = "https://ivangabrieldata.vercel.app"
+
+function resolveSiteUrl() {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim()
+  if (!raw) return DEFAULT_SITE_URL
+  const withScheme = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`
+  try {
+    return new URL(withScheme).origin
+  } catch {
+    return DEFAULT_SITE_URL
+  }
+}
+
+const siteUrl = resolveSiteUrl()
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
