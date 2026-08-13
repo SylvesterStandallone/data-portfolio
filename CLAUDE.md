@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # dev server (Next.js 14 pages at http://localhost:3000)
+npm run dev      # dev server (Next.js 14, http://localhost:3000)
 npm run build    # production build
 npm run start    # serve the production build
 npm run lint     # next lint
@@ -18,40 +18,37 @@ There is no test suite.
 
 `next.config.mjs` sets `eslint.ignoreDuringBuilds: true` and `typescript.ignoreBuildErrors: true`. A green
 `npm run build` therefore proves nothing about type or lint correctness. Always run `npx tsc --noEmit` after
-changing TypeScript.
-
-One pre-existing error is expected and unrelated to new work: `contexts/LanguageContext.tsx` indexes
-`translations` with a bare `string` (TS7053).
+changing TypeScript — it currently passes clean, so any error it reports is something you introduced.
 
 ## Architecture
 
 Single-page Next.js App Router site (Spanish-first portfolio for a Data Engineer). `app/page.tsx` renders seven
 sections in fixed order from `components/sections/`; `app/layout.tsx` wraps them in `LanguageProvider`, `Navbar`
-and `Footer`. There are no other routes and no API routes — the contact form's `onSubmit` only flips local state,
-it does not send anything.
+and `Footer`. There are no other routes and no API routes, and there is no backend of any kind: the contact form
+builds a `wa.me` link from its fields and opens WhatsApp in a new tab (`Contact.tsx`), so nothing is ever posted
+anywhere. Message templates for that link live in `content.ts` as `waTemplate` / `waEmptyChallenge`.
 
-### Two parallel i18n systems — know which one you are in
+### i18n: all copy lives in `lib/content.ts`
 
-Both exist and are unrelated. Adding a string to the wrong one silently does nothing.
+One `as const` object shaped `content[lang].<section>`, with `es` and `en` as mirrored subtrees. Components read
+it as `const c = content[language].hero`. **Any edit to the `es` subtree must be mirrored in `en`** — the two are
+maintained by hand and drift silently, since nothing enforces that they have the same shape.
 
-1. **`lib/content.ts`** — the one every section actually uses. A single `as const` object shaped
-   `content[lang].<section>`, with `es` and `en` as mirrored subtrees. Components read it as
-   `const c = content[language].hero`. **Any edit to the `es` subtree must be mirrored in `en`**; they are
-   maintained by hand and drift silently since nothing enforces the shape.
-2. **`contexts/LanguageContext.tsx`** — a flat `t("some.key")` map, largely legacy. It also owns the
-   `language` state, `localStorage` persistence, and the `<html lang>` attribute, so it cannot be deleted.
+`contexts/LanguageContext.tsx` owns only the `language` state, its `localStorage` persistence and the
+`<html lang>` attribute. It used to also carry a flat `t("some.key")` dictionary from an earlier version of the
+portfolio; that was removed. Do not reintroduce a second source of copy — put strings in `content.ts`.
 
-Language is client state (defaults to `"es"`, hydrated from `localStorage`). Everything that reads it is a
-client component, so the SSR HTML always renders Spanish — grep the served HTML for Spanish strings, not English,
-when verifying a change.
+Language is client state defaulting to `"es"` and hydrated from `localStorage` in an effect, and every consumer is
+a client component. **The SSR HTML therefore always renders Spanish**: when verifying a change by fetching the
+served HTML, grep for the Spanish strings, not the English ones.
 
 ### Styling
 
 Tailwind v4, configured entirely in `app/globals.css` via `@theme inline` — there is no `tailwind.config`.
 Design tokens are CSS variables on `:root`; the site is **dark-only** and `.dark` is deliberately kept identical
 to `:root`, with `dark` hardcoded on `<html>`. Palette: `#0b0d11` background, `#14171d` card, `#050505` terminal,
-`#2d3139` border, `#22d3ee` primary (cyan), `#98a2b3` muted. Fonts are next/font CSS variables:
-`--font-inter` (sans), `--font-hanken` (display), `--font-jetbrains` (mono).
+`#2d3139` border, `#22d3ee` primary (cyan), `#98a2b3` muted, `#f5f7fa` foreground. Fonts are next/font CSS
+variables: `--font-inter` (sans), `--font-hanken` (display), `--font-jetbrains` (mono).
 
 Custom utilities live in the `@layer utilities` block of `globals.css`: `.blueprint-bg` (grid backdrop applied to
 `<body>`), `.glow-cyan`, and the `.case-flow` / `.case-pulse` keyframes used by the case-study SVGs. Any new
@@ -60,8 +57,7 @@ animation belongs there and needs a `prefers-reduced-motion` opt-out alongside t
 `components/ui/` holds six leftover shadcn/ui primitives from v0 (`badge`, `button`, `card`, `input`, `label`,
 `textarea`). **None of them are imported anywhere** — every section is hand-written with raw elements and
 Tailwind classes. `lib/utils.ts` (`cn`) is likewise only used by those orphans. Match the surrounding hand-rolled
-style rather than reaching for shadcn, and note that `package.json` lists ~30 Radix packages that the site does
-not use.
+style rather than reaching for shadcn, and note that `package.json` lists ~30 Radix packages the site never uses.
 
 ### Case-study illustrations
 
@@ -74,11 +70,35 @@ with the palette above by hand. Each visual takes a `lang` prop and pulls its te
 Numbers shown in these SVGs are load-bearing: bar heights are proportional to the values they label, and the
 percentage badge must match both the bars and the prose in `content.ts`. Change all three together.
 
-## Deployment
+### Metadata and social previews
+
+The favicon and share images use Next's file conventions in `app/`: `icon.png`, `apple-icon.png`,
+`opengraph-image.png`, `twitter-image.png`. Next emits the `<link>`/`<meta>` tags from the filenames — do not
+hand-write those tags.
+
+`layout.tsx` sets `metadataBase` from `process.env.NEXT_PUBLIC_SITE_URL`, falling back to the current production
+domain. **`og:image` only becomes an absolute production URL in a real build**: `npm run dev` resolves it against
+the request origin, so verifying social previews requires `npm run build && npm run start`, not the dev server.
+
+## Assets and deployment
 
 Vercel, with the repo auto-synced from v0.app (see `README.md`) — changes made in the v0 UI get pushed here.
-`images.unoptimized: true`, so `next/image` emits plain `<img>` and files in `public/` are served verbatim.
+`images.unoptimized: true`, so `next/image` emits plain `<img>` and files in `public/` are served verbatim; there
+is no automatic resizing or format conversion, which makes oversized source images a real payload cost.
 
-**The host is case-sensitive.** Everything in `public/` is lowercase and referenced with exactly that case;
-keep it that way — a `.JPG` on disk referenced as `.jpg` works on Windows locally and 404s in production.
-Referenced assets: `/logo.png`, `/ivan-portrait.jpg`, `/cv.pdf`. The `screenshot_*.png` files are unused.
+`public/` is deliberately minimal — `logo.png`, `ivan-portrait.jpg`, `cv.pdf`, and nothing else. Unreferenced
+assets were moved to `public/dead/`, which is gitignored: it exists on disk but is neither committed nor
+deployed. Put anything you retire there rather than deleting it.
+
+### Filename case is a production-only trap
+
+The host is case-sensitive; Windows and macOS are not. Two compounding failure modes have already bitten this
+repo:
+
+1. A file named `foo.JPG` referenced as `/foo.jpg` works locally and 404s in production.
+2. Worse, `core.ignorecase=true` (git's default here) means **git silently ignores case-only renames**. Renaming
+   `foo.JPG` to `foo.jpg` leaves `git status` empty and the old name still in the index, so the fix never ships.
+   Force it with `git rm --cached public/foo.JPG && git add public/foo.jpg`, then confirm the new casing with
+   `git ls-files public`.
+
+Keep everything in `public/` lowercase, and verify with `git ls-files` — not `ls` — that the repo agrees.
